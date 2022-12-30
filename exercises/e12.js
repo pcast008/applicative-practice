@@ -6,6 +6,7 @@ import { data } from "../data/data";
 
 export function allPlanetsMoonsCount(data) {
   // Your code goes here...
+  return data.planets.map(planet => planet?.moons?.length || 0).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 }
 
 

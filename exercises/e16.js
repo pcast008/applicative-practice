@@ -6,7 +6,14 @@ import { data } from "../data/data";
 
 export function getGreatestDiscoveryYear(data) {
   // Your code goes here...
+  const asteroids = data.asteroids
+
+  return asteroids.reduce((acc, asteroid, index) => {
+    return acc.count > asteroids.filter(asteroid => asteroid.discoveryYear === asteroids[index].discoveryYear).length ? acc : 
+    { discoveryYear: asteroids[index].discoveryYear, count: asteroids.filter(asteroid => asteroid.discoveryYear === asteroids[index].discoveryYear).length }
+  }, { discoveryYear: asteroids[0].discoveryYear, count: asteroids.filter(asteroid => asteroid.discoveryYear === asteroids[0].discoveryYear).length } ).discoveryYear
 }
+
 
 
 
