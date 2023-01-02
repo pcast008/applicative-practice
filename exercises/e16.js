@@ -5,16 +5,16 @@ import { data } from "../data/data";
 // Return example: 1902
 
 export function getGreatestDiscoveryYear(data) {
-  // Your code goes here...
-  const asteroids = data.asteroids
+    // Your code goes here...
+    const discoveryYears = data.asteroids.reduce((acc, asteroid) => {
+        const currValue = acc[asteroid.discoveryYear] ?? 0
+        return {...acc, [asteroid.discoveryYear]: currValue + 1}
+    }, {})
 
-  return asteroids.reduce((acc, asteroid, index) => {
-    return acc.count > asteroids.filter(asteroid => asteroid.discoveryYear === asteroids[index].discoveryYear).length ? acc : 
-    { discoveryYear: asteroids[index].discoveryYear, count: asteroids.filter(asteroid => asteroid.discoveryYear === asteroids[index].discoveryYear).length }
-  }, { discoveryYear: asteroids[0].discoveryYear, count: asteroids.filter(asteroid => asteroid.discoveryYear === asteroids[0].discoveryYear).length } ).discoveryYear
+    const year = parseInt(Object.entries(discoveryYears).reduce((prevYear, currYear) => currYear[1] > prevYear[1] ? currYear : prevYear)[0])
+
+    return year
 }
-
-
 
 
 // === TEST YOURSELF ===
